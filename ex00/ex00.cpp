@@ -5,9 +5,10 @@
 #include <cstdlib>
 #include <map>
 
-int conversKey(std::string &key)
+int  conversKey(std::string &key)
 {
     std::string resolt = "";
+
     for (size_t i = 0; i < key.length(); i++)
     {
         if (key[i] != '-')
@@ -135,3 +136,4 @@ int main(int ac, char **av)
 
     return 0;
 }
+

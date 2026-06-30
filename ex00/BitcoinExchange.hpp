@@ -10,13 +10,11 @@
 class BitcoinExchange
 {
     private:
-        std::map<int,std::string>_data;
+        std::map<int,std::string>data;
 
         int conversKey(std::string &key);
         int conversKeytext(std::string &key,std::string &value);
         double getRate(int data);
-        bool isLeapYear(int year);
-        int dayInmond(int year,int month);
 
         
         public:

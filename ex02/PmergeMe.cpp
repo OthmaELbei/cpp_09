@@ -17,7 +17,6 @@ PmergeMe &PmergeMe::operator=(const PmergeMe &other)
     return *this;
 }
 
-// ─── التحقق من المدخلات ───
 bool PmergeMe::parseInput(int ac, char **av)
 {
     if (ac < 2)
@@ -50,13 +49,13 @@ std::vector<int> PmergeMe::jacobsthalSeq(int n)
     res.push_back(1);
     int a = 0;
     int b = 1;
-    int k = a + 2 * b;
+    int k = 2*a +  b;
     while (k <= n)
     {
         res.push_back(k);
         a = b;
         b = k;
-        k = a + 2 * b;
+        k = 2*a + b;
     }
     return res;
 }
@@ -79,10 +78,21 @@ void PmergeMe::mergeSortVec(std::vector<std::pair<int,int> >& v)
     mergeSortVec(r);
     for (size_t i = 0, j = 0, k = 0; i < l.size() || j < r.size(); k++)
     {
-        if (j == r.size())                    { v[k] = l[i]; i++; }
-        else if (i == l.size())               { v[k] = r[j]; j++; }
-        else if (l[i].first < r[j].first)     { v[k] = l[i]; i++; }
-        else                                  { v[k] = r[j]; j++; }
+        if (j == r.size()){
+             v[k] = l[i]; i++; 
+        }
+        else if (i == l.size())
+        {
+             v[k] = r[j]; j++; 
+        }
+        else if (l[i].first < r[j].first)
+        { 
+            v[k] = l[i]; i++;
+        }
+        else 
+        {
+             v[k] = r[j]; j++; 
+        }
     }
 }
 
@@ -93,7 +103,6 @@ double PmergeMe::sortVector()
     if (_vec.size() <= 1)
         return static_cast<double>(clock() - start) / CLOCKS_PER_SEC * 1000000;
 
-    // ─── إنشاء الأزواج ───
     std::vector<std::pair<int,int> > w;
     int  straggler    = -1;
     bool hasStraggler = (_vec.size() % 2 != 0);
@@ -105,10 +114,8 @@ double PmergeMe::sortVector()
             std::max(_vec[i], _vec[i - 1]),
             std::min(_vec[i], _vec[i - 1])));
 
-    // ─── ترتيب الأزواج ───
     mergeSortVec(w);
 
-    // ─── فصل السلاسل ───
     std::vector<int> mainChain;
     std::vector<int> pend;
     for (size_t i = 0; i < w.size(); i++)
@@ -226,7 +233,7 @@ double PmergeMe::sortDeque()
     return static_cast<double>(clock() - start) / CLOCKS_PER_SEC * 1000000;
 }
 
-// ─── التشغيل والعرض ───
+
 void PmergeMe::run()
 {
     std::cout << "Before:";
