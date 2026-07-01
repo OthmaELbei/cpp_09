@@ -54,11 +54,6 @@ void RPN::calculate(const std::string &expression)
         if (tchekNumber(token))
         {
             int num = atoi(token.c_str());
-            if (num >= 10)
-            {
-                std::cerr << "Error" << std::endl;
-                return;
-            }
             _stack.push(num);
         }
         else if (isOperator(token))

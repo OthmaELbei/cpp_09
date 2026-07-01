@@ -9,8 +9,7 @@ int main(int ac, char **av)
     }
 
     BitcoinExchange btc;
-    btc.loadDatabase("data.csv");   // قاعدة البيانات الموجودة مع المشروع
-    btc.processInput(av[1]);        // ملف الإدخال من المستخدم
-
+    btc.loadDatabase("data.csv");  
+    btc.processInput(av[1]);        
     return 0;
 }

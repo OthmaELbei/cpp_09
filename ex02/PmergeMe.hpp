@@ -17,11 +17,10 @@ private:
     std::deque<int>  _deq;
     int              _size;
 
-    // vector
     void   mergeSortVec(std::vector<std::pair<int,int> >& v);
     double sortVector();
 
-    // deque
+
     void   mergeSortDeq(std::deque<std::pair<int,int> >& d);
     double sortDeque();
 
